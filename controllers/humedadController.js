@@ -1,5 +1,6 @@
 
 const Humedad = require('../models/humedad');
+const { notify } = require('../utils/notify');
 
 function buildStatsFilter(req) {
   const filtro = { deletedAt: null };
@@ -87,6 +88,16 @@ async function create(req, res) {
     // 3) Crear con whitelist (sin aceptar campos extra)  
     const dato = new Humedad({ humedad, puntoRocio, sonda, timestamp: ts });
     await dato.save();
+
+    await notify({
+      resource: 'humedad',
+      action: 'create',
+      doc: dato,
+      Model: Humedad,
+      statsField: 'humedad' // <- el campo numérico a analizar
+    });
+
+
     res.status(201).json(dato);
   } catch (err) {
     res.status(400).json({ error: 'Error al crear humedad', details: err.message });
@@ -106,13 +117,23 @@ async function update(req, res) {
       }
       payload.timestamp = ts;
     }
-    const updated = await Humedad.findByIdAndUpdate(
+    const updated = await Humedad.findOneAndUpdate(
       { _id: req.params.id, deletedAt: null },
       payload,
       { new: true, runValidators: true });
 
     if (!updated) return res.status(404).json({ error: 'humedad no encontrado' });
+
+    await notify({
+      resource: 'humedad',
+      action: 'update',
+      doc: updated,
+      Model: Humedad,
+      statsField: 'humedad'
+    });
+
     res.json(updated);
+
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar humedad', details: err.message });
   }
@@ -129,7 +150,16 @@ async function remove(req, res) {
 
     if (!updated) return res.status(404).json({ error: 'Humedad no encontrada' });
 
+    await notify({
+      resource: 'humedad',
+      action: 'delete',
+      doc: updated,          // ✅ existe y tiene sonda
+      Model: Humedad,
+      statsField: 'humedad'
+    });
+
     res.json({ message: 'Humedad eliminada (soft delete)' });
+
   } catch (err) {
     res.status(500).json({ error: 'Error al eliminar Humedad', details: err.message });
   }

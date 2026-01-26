@@ -1,0 +1,8 @@
+[2026-01-09T02:17:15.528Z] [INFO] [/api-docs/] GET /api-docs/ -> 304 (5ms)
+[2026-01-09T02:17:15.548Z] [INFO] [/api-docs/swagger-ui.css] GET /api-docs/swagger-ui.css -> 304 (2ms)
+[2026-01-09T02:17:15.552Z] [INFO] [/api-docs/swagger-ui-bundle.js] GET /api-docs/swagger-ui-bundle.js -> 304 (2ms)
+[2026-01-09T02:17:15.554Z] [INFO] [/api-docs/swagger-ui-init.js] GET /api-docs/swagger-ui-init.js -> 200 (2ms)
+[2026-01-09T02:17:15.555Z] [INFO] [/api-docs/swagger-ui-standalone-preset.js] GET /api-docs/swagger-ui-standalone-preset.js -> 304 (4ms)
+[2026-01-09T02:17:15.798Z] [INFO] [/api-docs/favicon-32x32.png] GET /api-docs/favicon-32x32.png -> 304 (1ms)
+[2026-01-09T02:17:32.709Z] [INFO] [/api/imagen] GET /api/imagen -> 304 (5ms)
+[2026-01-09T02:17:45.018Z] [INFO] [/api/imagen?localizacion=Madrid] GET /api/imagen?localizacion=Madrid -> 200 (4ms)

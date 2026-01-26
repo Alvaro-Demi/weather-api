@@ -1,0 +1,8 @@
+[2026-01-21T23:57:20.916Z] [INFO] [/api/infoGeneral] POST /api/infoGeneral -> 201 (113ms)
+[2026-01-21T23:57:41.111Z] [INFO] [/] GET / -> 304 (2ms)
+[2026-01-21T23:57:44.905Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (2ms)
+[2026-01-21T23:57:49.941Z] [INFO] [/api/infoGeneral] POST /api/infoGeneral -> 201 (36ms)
+[2026-01-21T23:59:12.639Z] [INFO] [/api/infoGeneral/697167fd9afb1bf20a82717a] PUT /api/infoGeneral/697167fd9afb1bf20a82717a -> 400 (4ms)
+[2026-01-22T00:01:28.978Z] [INFO] [/api/infoGeneral/697167fd9afb1bf20a82717a] PUT /api/infoGeneral/697167fd9afb1bf20a82717a -> 400 (5ms)
+[2026-01-22T00:01:47.706Z] [INFO] [/api/infoGeneral/697167fd9afb1bf20a82717a] PUT /api/infoGeneral/697167fd9afb1bf20a82717a -> 200 (40ms)
+[2026-01-22T00:03:05.064Z] [INFO] [/api/infoGeneral/697167fd9afb1bf20a82717a] DELETE /api/infoGeneral/697167fd9afb1bf20a82717a -> 200 (40ms)

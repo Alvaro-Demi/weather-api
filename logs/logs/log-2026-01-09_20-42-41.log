@@ -1,0 +1,6 @@
+[2026-01-09T19:42:41.799Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (106ms)
+[2026-01-09T19:42:41.813Z] [INFO] [/api/sondas] POST /api/sondas -> 201 (10ms)
+[2026-01-09T19:42:41.822Z] [INFO] [/api/infoGeneral] POST /api/infoGeneral -> 201 (5ms)
+[2026-01-09T19:42:41.829Z] [INFO] [/api/infoGeneral?sondaId=69615a31dfceff17e40e71f8] GET /api/infoGeneral?sondaId=69615a31dfceff17e40e71f8 -> 200 (3ms)
+[2026-01-09T19:42:41.840Z] [INFO] [/api/infoGeneral/stats/avg?from=2026-01-08T19%3A42%3A41.831Z&to=2026-01-10T19%3A42%3A41.831Z&sondaId=69615a31dfceff17e40e71f8] GET /api/infoGeneral/stats/avg?from=2026-01-08T19%3A42%3A41.831Z&to=2026-01-10T19%3A42%3A41.831Z&sondaId=69615a31dfceff17e40e71f8 -> 200 (6ms)
+[2026-01-09T19:42:41.853Z] [INFO] [/api/infoGeneral/69615a31dfceff17e40e71fa] DELETE /api/infoGeneral/69615a31dfceff17e40e71fa -> 200 (9ms)

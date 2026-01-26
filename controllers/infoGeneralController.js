@@ -1,5 +1,7 @@
 
 const InfoGeneral = require('../models/infoGeneral.js'); // ajusta el nombre si lo creaste distinto
+const { notify } = require('../utils/notify');
+
 function buildStatsFilter(req) {
   const filtro = { deletedAt: null };
 
@@ -91,8 +93,16 @@ async function create(req, res) {
       sonda,
       timestamp: ts
     });
-
     await dato.save();
+
+    await notify({
+      resource: 'infoGeneral',
+      action: 'create',
+      doc: dato,
+      Model: InfoGeneral,
+      statsField: 'temperaturaReal' // <- el campo numérico a analizar
+    });
+
     res.status(201).json(dato);
   } catch (err) {
     res.status(400).json({ error: 'Error al crear info general', details: err.message });
@@ -102,7 +112,7 @@ async function create(req, res) {
 // PUT /api/users/:id
 async function update(req, res) {
   try {
-     const payload = { ...(req.body || {}) };
+    const payload = { ...(req.body || {}) };
     if ('deletedAt' in payload) delete payload.deletedAt;
 
     if (payload.timestamp) {
@@ -118,6 +128,15 @@ async function update(req, res) {
     );
 
     if (!updated) return res.status(404).json({ error: 'Info general no encontrada' });
+
+    await notify({
+      resource: 'infoGeneral',
+      action: 'update',
+      doc: updated,
+      Model: InfoGeneral,
+      statsField: 'temperaturaReal'
+    });
+
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar info general', details: err.message });
@@ -132,6 +151,14 @@ async function remove(req, res) {
 
     dato.deletedAt = new Date();
     await dato.save();
+
+    await notify({
+      resource: 'infoGeneral',
+      action: 'delete',
+      doc: dato,
+      Model: InfoGeneral,
+      statsField: 'temperaturaReal'
+    });
 
     res.json({ message: 'Info general eliminada (borrado lógico)' });
   } catch (err) {

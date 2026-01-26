@@ -1,0 +1,8 @@
+[2026-01-22T00:19:49.530Z] [INFO] [/ws-client.html] GET /ws-client.html -> 304 (12ms)
+[2026-01-22T00:20:01.898Z] [INFO] [/api/calidadAire] POST /api/calidadAire -> 201 (98ms)
+[2026-01-22T00:20:06.952Z] [INFO] [/api/datosAvanzados] POST /api/datosAvanzados -> 201 (27ms)
+[2026-01-22T00:20:13.027Z] [INFO] [/api/humedad] POST /api/humedad -> 201 (27ms)
+[2026-01-22T00:20:23.040Z] [INFO] [/api/infoGeneral] POST /api/infoGeneral -> 201 (28ms)
+[2026-01-22T00:20:28.846Z] [INFO] [/api/precipitacion] POST /api/precipitacion -> 201 (24ms)
+[2026-01-22T00:20:36.845Z] [INFO] [/api/viento] POST /api/viento -> 201 (25ms)
+[2026-01-22T00:22:54.297Z] [INFO] [/api/datosAvanzados/69716d360f7841c18f89c0b5] PUT /api/datosAvanzados/69716d360f7841c18f89c0b5 -> 200 (31ms)

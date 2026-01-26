@@ -1,0 +1,3 @@
+[2026-01-21T18:56:44.417Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (97ms)
+[2026-01-21T18:58:33.052Z] [INFO] [/api/viento] POST /api/viento -> 201 (27ms)
+[2026-01-21T19:04:58.067Z] [INFO] [/api/viento/697121d9f9df58adcfa619e2] PUT /api/viento/697121d9f9df58adcfa619e2 -> 400 (4ms)

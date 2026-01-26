@@ -1,0 +1,7 @@
+[2026-01-21T23:40:19.578Z] [INFO] [/] GET / -> 304 (6ms)
+[2026-01-21T23:40:24.184Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (3ms)
+[2026-01-21T23:40:32.042Z] [INFO] [/api/precipitacion] POST /api/precipitacion -> 201 (114ms)
+[2026-01-21T23:42:02.502Z] [INFO] [/api/precipitacion/697163efc4215d3cd4ed4d03] PUT /api/precipitacion/697163efc4215d3cd4ed4d03 -> 400 (14ms)
+[2026-01-21T23:43:00.857Z] [INFO] [/api/precipitacion/697163efc4215d3cd4ed4d03] PUT /api/precipitacion/697163efc4215d3cd4ed4d03 -> 400 (5ms)
+[2026-01-21T23:43:16.521Z] [INFO] [/api/precipitacion/697163efc4215d3cd4ed4d03] PUT /api/precipitacion/697163efc4215d3cd4ed4d03 -> 200 (43ms)
+[2026-01-21T23:43:45.671Z] [INFO] [/api/precipitacion/697163efc4215d3cd4ed4d03] DELETE /api/precipitacion/697163efc4215d3cd4ed4d03 -> 200 (31ms)

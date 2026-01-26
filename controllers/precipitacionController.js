@@ -1,5 +1,8 @@
 // controllers/sondasController.js
 const Precipitacion = require('../models/precipitacion');
+const { notify } = require('../utils/notify');
+
+
 function buildStatsFilter(req) {
   const filtro = { deletedAt: null };
 
@@ -68,18 +71,27 @@ async function getOne(req, res) {
 async function create(req, res) {
   try {
     const { tipo, acumulada, probabilidad, sonda, timestamp } = req.body || {};
-    
+
     if (!tipo || probabilidad == null || acumulada == null || !sonda || !timestamp) {
       return res.status(400).json({ error: 'Faltan campos: tipo, probabilidad, acumulada, sonda, timestamp' });
     }
 
-     const ts = new Date(timestamp);
+    const ts = new Date(timestamp);
     if (isNaN(ts.getTime())) {
       return res.status(400).json({ error: 'timestamp no es válido (ISO 8601)' });
     }
 
     const precipitacion = new Precipitacion({ tipo, probabilidad, acumulada, sonda, timestamp: ts });
     await precipitacion.save();
+
+    await notify({
+      resource: 'precipitacion',
+      action: 'create',
+      doc: precipitacion,
+      Model: Precipitacion,
+      statsField: 'acumulada' // <- el campo numérico a analizar
+    });
+
     res.status(201).json(precipitacion);
   } catch (err) {
     res.status(400).json({ error: 'Error al crear precipitacion', details: err.message });
@@ -106,6 +118,15 @@ async function update(req, res) {
     );
 
     if (!updated) return res.status(404).json({ error: 'Precipitacion no encontrada' });
+
+    await notify({
+      resource: 'acumulada',
+      action: 'update',
+      doc: updated,
+      Model: Precipitacion,
+      statsField: 'acumulada'
+    });
+
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar Precipitacion', details: err.message });
@@ -119,6 +140,14 @@ async function remove(req, res) {
 
     dato.deletedAt = new Date();
     await dato.save();
+
+    await notify({
+      resource: 'acumulada',
+      action: 'delete',
+      doc: dato,          // ✅ existe y tiene sonda
+      Model: Precipitacion,
+      statsField: 'acumulada'
+    });
 
     res.json({ message: 'Precipitacion eliminada (borrado lógico)' });
   } catch (err) {

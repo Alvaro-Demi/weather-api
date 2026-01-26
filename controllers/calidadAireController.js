@@ -1,5 +1,7 @@
 
 const CalidadAire = require('../models/calidadAire'); // ajusta el nombre si lo creaste distinto
+const { notify } = require('../utils/notify');
+
 
 function buildStatsFilter(req) {
   const filtro = { deletedAt: null };
@@ -116,6 +118,15 @@ async function create(req, res) {
       timestamp: ts
     });
     await calidadAire.save();
+
+    await notify({
+      resource: 'calidadAire',
+      action: 'create',
+      doc: calidadAire,
+      Model: CalidadAire,
+      statsField: 'indice' // <- el campo numérico a analizar
+    });
+
     res.status(201).json(calidadAire);
   } catch (err) {
     res.status(400).json({ error: 'Error al crear calidadAire', details: err.message });
@@ -141,6 +152,15 @@ async function update(req, res) {
     );
 
     if (!updated) return res.status(404).json({ error: 'Calidad del aire no encontrada' });
+
+    await notify({
+      resource: 'calidadAire',
+      action: 'update',
+      doc: updated,
+      Model: CalidadAire,
+      statsField: 'indice' // <- el campo numérico a analizar
+    });
+
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar calidad del aire', details: err.message });
@@ -155,6 +175,14 @@ async function remove(req, res) {
 
     dato.deletedAt = new Date();
     await dato.save();
+
+    await notify({
+      resource: 'calidadAire',
+      action: 'delete',
+      doc: dato,
+      Model: CalidadAire,
+      statsField: 'indice' // <- el campo numérico a analizar
+    });
 
     res.json({ message: 'Calidad del aire eliminada (borrado lógico)' });
   } catch (err) {

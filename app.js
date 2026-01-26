@@ -28,6 +28,7 @@ const authRoutes = require('./routes/auth');
 // Middlewares
 app.use(express.json()); // permitimos JSON en body
 app.use(requestLogger);
+app.use(express.static('public'));
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

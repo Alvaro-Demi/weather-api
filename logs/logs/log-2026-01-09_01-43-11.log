@@ -1,0 +1,2 @@
+[2026-01-09T00:43:18.686Z] [ERROR] [/boom] GET /boom -> Error de prueba Slack
+[2026-01-09T00:43:18.704Z] [INFO] [/boom] GET /boom -> 500 (19ms)

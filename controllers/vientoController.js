@@ -1,5 +1,7 @@
 
 const Viento = require('../models/viento');
+const { broadcast } = require('../ws/wsServer');
+const Sonda = require('../models/sondas');
 
 function buildStatsFilter(req) {
   const filtro = { deletedAt: null };
@@ -62,7 +64,7 @@ async function getAll(req, res) {
         filtro.timestamp.$lte = toDate;
       }
     }
-    const viento = await Viento.find(filtro).sort({timestamp: -1});
+    const viento = await Viento.find(filtro).sort({ timestamp: -1 });
     res.json(viento);
   } catch (err) {
     res.status(500).json({ error: 'Error al obtener Viento', details: err.message });
@@ -105,6 +107,29 @@ async function create(req, res) {
     });
 
     await viento.save();
+
+    // 4) Localización del evento (ciudad de la sonda)
+    const location = await getLocationFromSondaId(viento.sonda);
+
+    // 5) Construimos un filtro de stats (por sonda, y no borrados)
+    const filtroStats = { deletedAt: null, sonda: viento.sonda };
+
+    // 6) Calculamos stats actualizados
+    const stats = await calcStats(filtroStats);
+
+    // 7) Enviamos notificación PUSH por WebSocket
+    broadcast(
+      {
+        type: 'notify',
+        resource: 'viento',
+        action: 'create',
+        location,
+        data: viento,
+        stats
+      },
+      location // para que solo lo reciban suscritos a esa ciudad (o todos si no filtran)
+    );
+
     res.status(201).json(viento);
   } catch (err) {
     res.status(400).json({ error: 'Error al crear Viento', details: err.message });
@@ -124,6 +149,23 @@ async function update(req, res) {
     );
 
     if (!updated) return res.status(404).json({ error: 'Viento no encontrado' });
+
+    const location = await getLocationFromSondaId(updated.sonda);
+    const filtroStats = { deletedAt: null, sonda: updated.sonda };
+    const stats = await calcStats(filtroStats);
+
+    broadcast(
+      {
+        type: 'notify',
+        resource: 'viento',
+        action: 'update',
+        location,
+        data: updated,
+        stats
+      },
+      location
+    );
+
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar Viento', details: err.message });
@@ -138,6 +180,23 @@ async function remove(req, res) {
     }
     viento.deletedAt = new Date();
     await viento.save();
+
+    const location = await getLocationFromSondaId(viento.sonda);
+    const filtroStats = { deletedAt: null, sonda: viento.sonda };
+    const stats = await calcStats(filtroStats);
+
+    broadcast(
+      {
+        type: 'notify',
+        resource: 'viento',
+        action: 'delete',
+        location,
+        data: { _id: viento._id }, // basta con id si quieres
+        stats
+      },
+      location
+    );
+
 
     res.json({ message: 'Viento eliminado (borrado logico)' });
   } catch (err) {
@@ -228,5 +287,45 @@ async function median(req, res) {
     res.status(500).json({ error: 'Error en median', details: err.message });
   }
 }
+
+// Calcula min/max/avg/median usando un filtro Mongoose ya construido.
+// Esto lo usamos para notificaciones WS (sin depender de req/res).
+async function calcStats(filtro) {
+  // min
+  const minDoc = await Viento.findOne(filtro).sort({ velocidad: 1 }).select('velocidad');
+  // max
+  const maxDoc = await Viento.findOne(filtro).sort({ velocidad: -1 }).select('velocidad');
+  // avg + median necesitan lista
+  const docs = await Viento.find(filtro).sort({ velocidad: 1 }).select('velocidad');
+
+  const n = docs.length;
+  if (n === 0) {
+    return { min: null, max: null, avg: null, median: null, count: 0 };
+  }
+
+  const values = docs.map(d => d.velocidad);
+  const sum = values.reduce((acc, v) => acc + v, 0);
+  const avg = sum / n;
+
+  let median;
+  if (n % 2 === 1) median = values[Math.floor(n / 2)];
+  else median = (values[n / 2 - 1] + values[n / 2]) / 2;
+
+  return {
+    min: minDoc?.velocidad ?? null,
+    max: maxDoc?.velocidad ?? null,
+    avg: Number(avg.toFixed(2)),
+    median,
+    count: n
+  };
+}
+
+// Dado un ObjectId de sonda, obtiene la localización (ciudad).
+async function getLocationFromSondaId(sondaId) {
+  if (!sondaId) return null;
+  const s = await Sonda.findById(sondaId).select('localizacion').lean();
+  return s?.localizacion || null;
+}
+
 
 module.exports = { getAll, getOne, create, update, remove, min, max, avg, median };

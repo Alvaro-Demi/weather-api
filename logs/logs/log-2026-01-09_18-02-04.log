@@ -1,0 +1,2 @@
+[2026-01-09T17:02:04.660Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (88ms)
+[2026-01-09T17:02:04.731Z] [INFO] [/api/auth/login] POST /api/auth/login -> 401 (64ms)

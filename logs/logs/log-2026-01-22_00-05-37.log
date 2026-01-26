@@ -1,0 +1,4 @@
+[2026-01-21T23:05:47.484Z] [INFO] [/] GET / -> 304 (4ms)
+[2026-01-21T23:05:55.962Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (1ms)
+[2026-01-21T23:07:24.564Z] [INFO] [/api/humedad] GET /api/humedad -> 200 (12ms)
+[2026-01-21T23:08:19.716Z] [INFO] [/api/humedad] POST /api/humedad -> 400 (14ms)

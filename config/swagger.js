@@ -8,7 +8,7 @@ const swaggerDefinition = {
     description: 'Documentación de la API meteorológica (prototipo)',
   },
   servers: [
-    { url: 'http://localhost:3000', description: 'Local' }
+    { url: 'https://localhost:3000', description: 'Local' } //para entrar https://localhost:3000/api-docs/#/
   ],
   components: {
     securitySchemes: {

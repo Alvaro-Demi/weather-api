@@ -1,0 +1,8 @@
+[2026-01-09T03:02:20.896Z] [INFO] [/api-docs/] GET /api-docs/ -> 304 (4ms)
+[2026-01-09T03:02:20.914Z] [INFO] [/api-docs/swagger-ui.css] GET /api-docs/swagger-ui.css -> 304 (2ms)
+[2026-01-09T03:02:20.919Z] [INFO] [/api-docs/swagger-ui-init.js] GET /api-docs/swagger-ui-init.js -> 200 (1ms)
+[2026-01-09T03:02:20.920Z] [INFO] [/api-docs/swagger-ui-bundle.js] GET /api-docs/swagger-ui-bundle.js -> 304 (4ms)
+[2026-01-09T03:02:20.922Z] [INFO] [/api-docs/swagger-ui-standalone-preset.js] GET /api-docs/swagger-ui-standalone-preset.js -> 304 (5ms)
+[2026-01-09T03:02:21.207Z] [INFO] [/api-docs/favicon-32x32.png] GET /api-docs/favicon-32x32.png -> 304 (1ms)
+[2026-01-09T03:02:36.580Z] [INFO] [/api/precipitacion] GET /api/precipitacion -> 200 (6ms)
+[2026-01-09T03:02:55.893Z] [INFO] [/api/precipitacion/stats/max] GET /api/precipitacion/stats/max -> 200 (5ms)

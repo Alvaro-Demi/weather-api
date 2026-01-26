@@ -1,0 +1,6 @@
+[2026-01-21T23:26:42.542Z] [INFO] [/] GET / -> 304 (5ms)
+[2026-01-21T23:26:49.838Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (1ms)
+[2026-01-21T23:27:15.181Z] [INFO] [/api/viento] POST /api/viento -> 201 (35ms)
+[2026-01-21T23:27:26.242Z] [INFO] [/api/humedad] POST /api/humedad -> 201 (12ms)
+[2026-01-21T23:28:37.120Z] [INFO] [/api/humedad/69715df17fa681428c366687] PUT /api/humedad/69715df17fa681428c366687 -> 200 (18ms)
+[2026-01-21T23:28:57.418Z] [INFO] [/api/humedad/69715df17fa681428c366687] DELETE /api/humedad/69715df17fa681428c366687 -> 200 (15ms)

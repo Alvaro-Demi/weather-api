@@ -1,0 +1,6 @@
+[2026-01-09T16:18:47.645Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (90ms)
+[2026-01-09T16:18:47.652Z] [INFO] [/api/user] GET /api/user -> 401 (0ms)
+[2026-01-09T16:18:47.663Z] [INFO] [/api/user] GET /api/user -> 200 (6ms)
+[2026-01-09T16:18:47.742Z] [INFO] [/api/user] POST /api/user -> 201 (75ms)
+[2026-01-09T16:18:47.752Z] [INFO] [/api/user/69612a67bce708d492bfca73] PUT /api/user/69612a67bce708d492bfca73 -> 200 (6ms)
+[2026-01-09T16:18:47.761Z] [INFO] [/api/user/69612a67bce708d492bfca73] DELETE /api/user/69612a67bce708d492bfca73 -> 200 (5ms)

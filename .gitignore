@@ -1,5 +1,5 @@
 .env
 node_modules
-logs/
+
 coverage/
 .DS_Store

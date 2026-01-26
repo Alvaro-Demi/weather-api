@@ -1,0 +1,5 @@
+[2026-01-21T19:06:41.111Z] [INFO] [/api/viento/697121d9f9df58adcfa619e2] PUT /api/viento/697121d9f9df58adcfa619e2 -> 200 (36ms)
+[2026-01-21T19:06:51.736Z] [INFO] [/] GET / -> 304 (2ms)
+[2026-01-21T19:06:51.757Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (2ms)
+[2026-01-21T19:07:13.802Z] [INFO] [/api/viento/697121d9f9df58adcfa619e2] PUT /api/viento/697121d9f9df58adcfa619e2 -> 200 (14ms)
+[2026-01-21T19:07:49.607Z] [INFO] [/api/viento/697121d9f9df58adcfa619e2] DELETE /api/viento/697121d9f9df58adcfa619e2 -> 200 (16ms)

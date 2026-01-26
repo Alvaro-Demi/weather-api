@@ -1,0 +1,5 @@
+[2026-01-09T19:17:36.230Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (94ms)
+[2026-01-09T19:17:36.241Z] [INFO] [/api/sondas] GET /api/sondas -> 200 (5ms)
+[2026-01-09T19:17:36.258Z] [INFO] [/api/sondas] POST /api/sondas -> 201 (10ms)
+[2026-01-09T19:17:36.267Z] [INFO] [/api/sondas?localizacion=Madrid] GET /api/sondas?localizacion=Madrid -> 200 (5ms)
+[2026-01-09T19:17:36.282Z] [INFO] [/api/sondas/696154507c618e26fdaca4ed] DELETE /api/sondas/696154507c618e26fdaca4ed -> 200 (11ms)

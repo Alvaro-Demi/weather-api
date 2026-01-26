@@ -1,5 +1,8 @@
 
 const DatosAvanzados = require('../models/datosAvanzados'); // ajusta el nombre si lo creaste distinto
+const { notify } = require('../utils/notify');
+
+
 function buildStatsFilter(req) {
   const filtro = { deletedAt: null };
 
@@ -90,6 +93,15 @@ async function create(req, res) {
     });
 
     await datosAvanzados.save();
+
+    await notify({
+      resource: 'datosAvanzados',
+      action: 'create',
+      doc: datosAvanzados,
+      Model: DatosAvanzados,
+      statsField: 'presionAire' // <- el campo numérico a analizar
+    });
+
     res.status(201).json(datosAvanzados);
   } catch (err) {
     res.status(400).json({ error: 'Error al crear datos', details: err.message });
@@ -115,6 +127,15 @@ async function update(req, res) {
     );
 
     if (!updated) return res.status(404).json({ error: 'Datos avanzados no encontrados' });
+
+    await notify({
+      resource: 'datosAvanzados',
+      action: 'update',
+      doc: updated,
+      Model: DatosAvanzados,
+      statsField: 'presionAire' // <- el campo numérico a analizar
+    });
+
     res.json(updated);
   } catch (err) {
     res.status(400).json({ error: 'Error al actualizar datos avanzados', details: err.message });
@@ -129,6 +150,14 @@ async function remove(req, res) {
 
     dato.deletedAt = new Date();
     await dato.save();
+
+    await notify({
+      resource: 'datosAvanzados',
+      action: 'delete',
+      doc: dato,
+      Model: DatosAvanzados,
+      statsField: 'presionAire' // <- el campo numérico a analizar
+    });
 
     res.json({ message: 'Datos avanzados eliminados (borrado lógico)' });
   } catch (err) {

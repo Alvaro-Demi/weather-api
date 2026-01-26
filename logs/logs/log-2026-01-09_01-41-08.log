@@ -1,0 +1,2 @@
+[2026-01-09T00:41:50.317Z] [ERROR] [/boom] GET /boom -> Explosión de prueba
+[2026-01-09T00:41:50.361Z] [INFO] [/boom] GET /boom -> 500 (44ms)

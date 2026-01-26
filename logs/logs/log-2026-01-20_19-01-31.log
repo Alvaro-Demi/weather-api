@@ -1,0 +1,6 @@
+[2026-01-20T18:01:31.764Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (101ms)
+[2026-01-20T18:01:31.779Z] [INFO] [/api/imagen] GET /api/imagen -> 200 (5ms)
+[2026-01-20T18:01:31.796Z] [INFO] [/api/imagen] POST /api/imagen -> 201 (12ms)
+[2026-01-20T18:01:31.803Z] [INFO] [/api/imagen?localizacion=Madrid] GET /api/imagen?localizacion=Madrid -> 200 (3ms)
+[2026-01-20T18:01:31.809Z] [INFO] [/api/imagen?from=2026-01-19T18%3A01%3A31.805Z&to=2026-01-21T18%3A01%3A31.805Z] GET /api/imagen?from=2026-01-19T18%3A01%3A31.805Z&to=2026-01-21T18%3A01%3A31.805Z -> 200 (3ms)
+[2026-01-20T18:01:31.819Z] [INFO] [/api/imagen/696fc2fb604eeebbe718e281] DELETE /api/imagen/696fc2fb604eeebbe718e281 -> 200 (6ms)

@@ -1,0 +1,5 @@
+[2026-01-21T23:36:57.355Z] [INFO] [/api/precipitacion] POST /api/precipitacion -> 400 (76ms)
+[2026-01-21T23:37:45.492Z] [INFO] [/api/precipitacion] POST /api/precipitacion -> 400 (11ms)
+[2026-01-21T23:39:26.713Z] [INFO] [/] GET / -> 304 (3ms)
+[2026-01-21T23:39:26.740Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (2ms)
+[2026-01-21T23:39:37.055Z] [INFO] [/api/precipitacion] POST /api/precipitacion -> 400 (14ms)

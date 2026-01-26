@@ -1,0 +1,7 @@
+[2026-01-21T18:21:43.265Z] [INFO] [/] GET / -> 304 (4ms)
+[2026-01-21T18:22:03.166Z] [INFO] [/.well-known/appspecific/com.chrome.devtools.json] GET /.well-known/appspecific/com.chrome.devtools.json -> 404 (1ms)
+[2026-01-21T18:55:47.195Z] [INFO] [/api-docs/] GET /api-docs/ -> 304 (3ms)
+[2026-01-21T18:55:47.223Z] [INFO] [/api-docs/swagger-ui.css] GET /api-docs/swagger-ui.css -> 304 (1ms)
+[2026-01-21T18:55:47.231Z] [INFO] [/api-docs/swagger-ui-bundle.js] GET /api-docs/swagger-ui-bundle.js -> 304 (1ms)
+[2026-01-21T18:55:47.235Z] [INFO] [/api-docs/swagger-ui-standalone-preset.js] GET /api-docs/swagger-ui-standalone-preset.js -> 304 (4ms)
+[2026-01-21T18:55:47.234Z] [INFO] [/api-docs/swagger-ui-init.js] GET /api-docs/swagger-ui-init.js -> 304 (1ms)

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>AEMET WS Client</title>
+  <style>
+    body { font-family: monospace; background: #ffffff; color: rgb(0, 0, 0); padding: 20px; }
+    input, button { padding: 5px; margin: 5px 0; }
+    pre { background: #000; padding: 10px; height: 300px; overflow-y: auto; color: #ffffff; }
+  </style>
+</head>
+<body>
+
+  <h2>Cliente WebSocket – AEMET</h2>
+
+  <label>Localización (opcional):</label><br>
+  <input id="location" placeholder="Por ejemplo Madrid" />
+  <br>
+  <button onclick="connect()">Conectar</button>
+
+  <pre id="log"></pre>
+
+  <script>
+    let ws;
+    const logEl = document.getElementById('log');
+
+    function log(msg) {
+      logEl.textContent += msg + "\n";
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function connect() {
+      if (ws) ws.close();
+
+      ws = new WebSocket("wss://localhost:3000/ws"); //para comprobarlo: https://localhost:3000/ws-client.html
+
+
+      ws.onopen = () => {
+        log("✅ Conectado al servidor WS");
+
+        const location = document.getElementById('location').value.trim();
+        if (location) {
+          ws.send(JSON.stringify({
+            type: "subscribe",
+            location
+          }));
+          log("📍 Suscrito a localización: " + location);
+        } else {
+          log("🌍 Suscrito a TODAS las notificaciones");
+        }
+      };
+
+      ws.onmessage = (e) => {
+        log("📩 " + e.data);
+      };
+
+      ws.onerror = () => log("❌ Error en WebSocket");
+      ws.onclose = () => log("🔌 Conexión cerrada");
+    }
+  </script>
+
+</body>
+</html>

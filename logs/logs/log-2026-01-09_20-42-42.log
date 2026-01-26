@@ -1,0 +1,5 @@
+[2026-01-09T19:42:42.508Z] [INFO] [/api/auth/login] POST /api/auth/login -> 200 (99ms)
+[2026-01-09T19:42:42.522Z] [INFO] [/api/sondas] POST /api/sondas -> 201 (10ms)
+[2026-01-09T19:42:42.532Z] [INFO] [/api/calidadAire] POST /api/calidadAire -> 201 (5ms)
+[2026-01-09T19:42:42.540Z] [INFO] [/api/calidadAire/stats/avg?from=2026-01-08T19%3A42%3A42.535Z&to=2026-01-10T19%3A42%3A42.535Z&sondaId=69615a32c1c0465a33a56c91] GET /api/calidadAire/stats/avg?from=2026-01-08T19%3A42%3A42.535Z&to=2026-01-10T19%3A42%3A42.535Z&sondaId=69615a32c1c0465a33a56c91 -> 200 (3ms)
+[2026-01-09T19:42:42.551Z] [INFO] [/api/calidadAire/69615a32c1c0465a33a56c93] DELETE /api/calidadAire/69615a32c1c0465a33a56c93 -> 200 (7ms)

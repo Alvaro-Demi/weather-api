@@ -1,24 +1,27 @@
 # 🌦️ Weather API
 
-REST API desarrollada con Node.js y Express para gestionar y consultar datos meteorológicos y ambientales.
+REST API desarrollada con **Node.js y Express** para gestionar y consultar datos meteorológicos y ambientales.
 
-El proyecto incluye autenticación de usuarios, acceso a diferentes tipos de datos meteorológicos, documentación mediante Swagger, WebSockets para comunicación en tiempo real y tests automatizados.
+El proyecto incorpora autenticación de usuarios, validación de peticiones, documentación mediante Swagger, comunicación en tiempo real mediante WebSockets y tests automatizados.
 
 ## ✨ Funcionalidades
 
-* 🔐 Autenticación de usuarios
-* 🌡️ Gestión de datos de temperatura y humedad
+* 🔐 Registro y autenticación de usuarios
+* 🔑 Autenticación mediante JWT
+* 🔒 Gestión segura de contraseñas mediante bcrypt
+* 🌡️ Gestión de datos meteorológicos
 * 🌧️ Gestión de precipitaciones
 * 💨 Gestión de datos de viento
 * 🌫️ Gestión de calidad del aire
+* 💧 Gestión de humedad
 * 📊 Consulta de datos avanzados
 * 📡 Gestión de sondas y dispositivos
 * 🖼️ Gestión de imágenes
 * 🔄 Comunicación en tiempo real mediante WebSockets
-* 📝 Validación de peticiones
+* ✅ Validación de peticiones
 * ⚠️ Middleware para gestión de errores
-* 📋 Registro de peticiones y logs
-* 🧪 Tests automatizados con Jest
+* 📝 Registro de peticiones
+* 🧪 Tests automatizados
 * 📚 Documentación de la API mediante Swagger
 
 ## 🛠️ Tecnologías
@@ -32,16 +35,29 @@ El proyecto incluye autenticación de usuarios, acceso a diferentes tipos de dat
 
 ### Base de datos
 
-* Base de datos SQL
+* MongoDB
+* Mongoose
+
+### Autenticación y seguridad
+
+* JSON Web Token (JWT)
+* bcryptjs
+* Express Validator
+* dotenv
 
 ### Comunicación
 
 * WebSockets
 
-### Testing y documentación
+### Testing
 
 * Jest
+* Supertest
+
+### Documentación
+
 * Swagger
+* Swagger UI
 
 ### Herramientas
 
@@ -55,29 +71,52 @@ El proyecto utiliza una estructura organizada por responsabilidades:
 
 ```text
 weather-api/
-├── config/          # Configuración de la aplicación y base de datos
-├── controllers/     # Lógica de las diferentes funcionalidades
-├── middlewares/     # Autenticación, validación, errores y logs
-├── models/          # Modelos de datos
-├── routes/          # Endpoints de la API
-├── test/            # Tests automatizados
-├── utils/           # Funciones auxiliares
-├── ws/              # Servidor WebSocket
-├── public/          # Recursos públicos
-└── app.js           # Configuración de Express
+├── config/
+├── controllers/
+├── middlewares/
+├── models/
+├── routes/
+├── test/
+├── utils/
+├── ws/
+├── public/
+├── app.js
+└── server.js
 ```
+
+### Capas principales
+
+* **Controllers:** lógica de las diferentes operaciones de la API.
+* **Models:** modelos de datos gestionados mediante Mongoose.
+* **Routes:** definición y organización de los endpoints.
+* **Middlewares:** autenticación, validación, gestión de errores y registro de peticiones.
+* **Test:** pruebas automatizadas de los diferentes recursos de la API.
+* **WebSockets:** comunicación en tiempo real.
+* **Config:** configuración de base de datos y documentación Swagger.
 
 ## 🔐 Autenticación
 
-La API incorpora autenticación de usuarios mediante middleware, protegiendo los endpoints que requieren acceso autorizado.
+La API incorpora un sistema de autenticación basado en **JWT**.
+
+Las contraseñas de los usuarios se gestionan mediante **bcryptjs** y los endpoints que requieren autorización están protegidos mediante middleware.
 
 ## 📡 WebSockets
 
-El proyecto incluye un servidor WebSocket integrado con el servidor HTTP/HTTPS para permitir comunicación en tiempo real.
+El proyecto incluye un servidor WebSocket utilizando la librería `ws`.
+
+Esto permite establecer comunicación en tiempo real entre el servidor y los clientes conectados.
+
+También se incluye un cliente de prueba dentro de:
+
+```text
+public/ws-client.html
+```
 
 ## 🧪 Testing
 
-Se utilizan tests automatizados con Jest para comprobar diferentes partes de la API, incluyendo:
+El proyecto utiliza **Jest** y **Supertest** para realizar pruebas automatizadas sobre diferentes endpoints y funcionalidades de la API.
+
+Entre las áreas cubiertas se encuentran:
 
 * Autenticación
 * Usuarios
@@ -88,10 +127,37 @@ Se utilizan tests automatizados con Jest para comprobar diferentes partes de la 
 * Sondas
 * Imágenes
 * Datos avanzados
+* Viento
 
-## 📚 Documentación
+Los tests pueden ejecutarse mediante:
 
-La API incluye configuración para documentar sus endpoints mediante **Swagger**, facilitando su consulta y prueba durante el desarrollo.
+```bash
+npm test
+```
+
+## 📚 Documentación de la API
+
+La API incorpora documentación mediante **Swagger** y **Swagger UI**, facilitando la consulta de los endpoints disponibles y su utilización durante el desarrollo.
+
+## ⚙️ Scripts disponibles
+
+```bash
+npm start
+```
+
+Inicia el servidor.
+
+```bash
+npm run dev
+```
+
+Inicia el proyecto en modo desarrollo utilizando Nodemon.
+
+```bash
+npm test
+```
+
+Ejecuta los tests automatizados mediante Jest.
 
 ## 💻 Instalación
 
@@ -101,14 +167,19 @@ Clona el repositorio:
 git clone https://github.com/Alvaro-Demi/weather-api.git
 ```
 
-Instala las dependencias:
+Accede al proyecto:
 
 ```bash
 cd weather-api
+```
+
+Instala las dependencias:
+
+```bash
 npm install
 ```
 
-Configura las variables de entorno necesarias para la conexión con la base de datos y el funcionamiento de la aplicación.
+Configura las variables de entorno necesarias para la conexión con MongoDB y la configuración de la aplicación.
 
 Después inicia el servidor:
 
@@ -116,8 +187,27 @@ Después inicia el servidor:
 npm start
 ```
 
+Para desarrollo:
+
+```bash
+npm run dev
+```
+
+## 🎯 Objetivo
+
+El objetivo del proyecto fue desarrollar una **API REST completa con Node.js y Express**, trabajando diferentes aspectos del desarrollo backend como:
+
+* Diseño de una API REST
+* Persistencia de datos con MongoDB
+* Autenticación y autorización
+* Validación de datos
+* Middleware
+* Comunicación en tiempo real
+* Testing automatizado
+* Documentación de endpoints
+
 ## 📌 Estado del proyecto
 
-Proyecto académico desarrollado durante el ciclo de Desarrollo de Aplicaciones Web.
+Proyecto académico desarrollado durante el ciclo de **Desarrollo de Aplicaciones Web (DAW)**.
 
-El repositorio se mantiene como muestra de trabajo backend con Node.js, Express, APIs REST, autenticación, WebSockets y testing.
+El repositorio se mantiene como muestra de trabajo backend con Node.js, Express, MongoDB, APIs REST, autenticación, WebSockets y testing.
